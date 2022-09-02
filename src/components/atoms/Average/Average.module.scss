@@ -1,0 +1,21 @@
+@use 'assets/styles/variables';
+
+.wrapper {
+  width: 34px;
+  height: 34px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+  color: variables.$lightGrey;
+  font-weight: bold;
+}
+.buttonWarning {
+  background-color: variables.$warning;
+}
+.buttonError {
+  background-color: variables.$error;
+}
+.buttonSuccess {
+  background-color: variables.$success;
+}
