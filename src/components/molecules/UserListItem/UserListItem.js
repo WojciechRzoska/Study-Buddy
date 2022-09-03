@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './UserListItem.module.scss';
-import Button from 'components/atoms/Button/Button';
+import DeleteButton from 'components/atoms/DeleteButton/DeleteButton';
 import Average from 'components/atoms/Average/Average';
 
 const UserListItem = ({
@@ -17,7 +17,7 @@ const UserListItem = ({
         <p>{name}</p>
         <p>attendance:{attendance}</p>
       </div>
-      <Button onClick={() => deleteUser(name)} />
+      <DeleteButton onClick={() => deleteUser(name)} />
     </li>
   );
 };
