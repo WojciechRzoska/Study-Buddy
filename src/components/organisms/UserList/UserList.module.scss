@@ -1,13 +1,5 @@
 @use 'assets/styles/variables';
 
-.wrapper {
-  background-color: variables.$white;
-  width: 100%;
-  max-width: 500px;
-  padding: 40px 30px;
-  box-shadow: 0 5px 15px -10px rgba(0, 0, 0, 0.3);
-  border-radius: 25px;
-}
 .userList {
   list-style: none;
   margin: 0;
