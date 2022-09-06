@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext, useReducer } from 'react';
 import styles from 'assets/styles/ViewWrapper.module.scss';
 import FormField from 'components/molecules/FormField/FormField';
 import Button from 'components/atoms/Button/Button';
@@ -9,23 +9,64 @@ const initialFormState = {
   name: '',
   attendance: '',
   average: '',
+  consent: false,
+  error: '',
+};
+
+const actionTypes = {
+  inputChange: 'INPUT CHANGE',
+  clearValue: 'CLEAR VALUE',
+  consentToggle: 'CONSENT TOGGLE',
+  throwError: 'THROW ERROR',
+};
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case actionTypes.inputChange:
+      return {
+        ...state,
+        [action.field]: action.value,
+      };
+    case actionTypes.clearValue:
+      return initialFormState;
+    case actionTypes.consentToggle:
+      return {
+        ...state,
+        consent: !state.consent,
+      };
+    case actionTypes.throwError:
+      return {
+        ...state,
+        error: action.errorValue,
+      };
+    default:
+      return state;
+  }
 };
 
 const AddUser = () => {
-  const [formValues, setFormValues] = useState(initialFormState);
+  const [formValues, dispatch] = useReducer(reducer, initialFormState);
   const { handleAddUser } = useContext(UsersContext);
 
   const handleInputChange = (e) => {
-    setFormValues({
-      ...formValues,
-      [e.target.name]: e.target.value,
+    dispatch({
+      type: actionTypes.inputChange,
+      field: e.target.name,
+      value: e.target.value,
     });
   };
 
   const handleSubmitUser = (e) => {
     e.preventDefault();
-    handleAddUser(formValues);
-    setFormValues(initialFormState);
+    if (formValues.consent) {
+      handleAddUser(formValues);
+      dispatch({ type: actionTypes.clearValue });
+    } else {
+      dispatch({
+        type: actionTypes.throwError,
+        errorValue: 'You need to check the consent',
+      });
+    }
   };
 
   return (
@@ -52,7 +93,15 @@ const AddUser = () => {
         value={formValues.average}
         onChange={handleInputChange}
       />
+      <FormField
+        label="Consent"
+        name="consent"
+        id="consent"
+        type="checkbox"
+        onChange={() => dispatch({ type: actionTypes.consentToggle })}
+      />
       <Button type="submit" />
+      {formValues.error ? <p>{formValues.error}</p> : null}
     </form>
   );
 };
