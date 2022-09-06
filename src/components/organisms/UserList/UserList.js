@@ -3,18 +3,15 @@ import UserListItem from 'components/molecules/UserListItem/UserListItem.js';
 import styles from './UserList.module.scss';
 import PropTypes from 'prop-types';
 import { UserShape } from 'types';
+import { Title } from 'components/atoms/Title/Title';
 
-const UserList = ({ users, deleteUser }) => {
+const UserList = ({ users }) => {
   return (
     <div className={styles.wrapper}>
-      <h1>Students List</h1>
+      <Title>Students List</Title>
       <ul className={styles.userList}>
         {users.map((userData) => (
-          <UserListItem
-            key={userData.name}
-            userData={userData}
-            deleteUser={deleteUser}
-          />
+          <UserListItem key={userData.name} userData={userData} />
         ))}
       </ul>
     </div>

@@ -1,0 +1,6 @@
+@use 'assets/styles/variables';
+
+.title {
+  font-size: variables.$font-extraLarge;
+  color: variables.$darkGrey;
+}

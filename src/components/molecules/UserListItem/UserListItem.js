@@ -1,13 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import styles from './UserListItem.module.scss';
 import DeleteButton from 'components/atoms/DeleteButton/DeleteButton';
 import Average from 'components/atoms/Average/Average';
+import { UsersContext } from 'providers/UsersProvides';
 
-const UserListItem = ({
-  deleteUser,
-  userData: { average, name, attendance = '0%' },
-}) => {
+const UserListItem = ({ userData: { average, name, attendance = '0%' } }) => {
+  const { deleteUser } = useContext(UsersContext);
   return (
     <li className={styles.wrapper}>
       <div>
