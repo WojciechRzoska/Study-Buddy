@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './Navigation.module.scss';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const Navigation = () => {
   return (
@@ -11,12 +11,26 @@ const Navigation = () => {
           Buddy
         </h1>
       </div>
-      <Link className={styles.links} to="/">
+      <NavLink
+        className={({ isActive }) =>
+          [[styles.links], isActive ? [styles.active] : null]
+            .filter(Boolean)
+            .join(' ')
+        }
+        to="/"
+      >
         Dashboard
-      </Link>
-      <Link className={styles.links} to="/add-user">
+      </NavLink>
+      <NavLink
+        className={({ isActive }) =>
+          [[styles.links], isActive ? [styles.active] : null]
+            .filter(Boolean)
+            .join(' ')
+        }
+        to="add-user"
+      >
         Add user
-      </Link>
+      </NavLink>
     </div>
   );
 };
