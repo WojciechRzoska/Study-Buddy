@@ -3,9 +3,14 @@
 .button {
   margin: 15px 0;
   padding: 7px 20px;
-  font-size: variables.$font-medium;
+  font-size: variables.$font-small;
   background-color: variables.$lightPurple;
   border-radius: 20px;
   font-weight: bold;
   color: variables.$darkGrey;
+  border: none;
+}
+.bigButton {
+  padding: 10px 38px;
+  font-size: variables.$font-medium;
 }
