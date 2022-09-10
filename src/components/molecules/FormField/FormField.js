@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './FormField.module.scss';
+import Input from 'components/atoms/Input/Input';
 
 const FormField = ({
   value,
@@ -16,7 +17,7 @@ const FormField = ({
       <label className={styles.label} htmlFor={id}>
         {label}
       </label>
-      <input
+      <Input
         className={styles.input}
         name={name}
         id={id}

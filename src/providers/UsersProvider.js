@@ -7,7 +7,7 @@ export const UsersContext = React.createContext({
   deleteUser: () => {},
 });
 
-const UsersProvides = ({ children }) => {
+const UsersProvider = ({ children }) => {
   const [users, setUsers] = useState(usersData);
 
   const deleteUser = (name) => {
@@ -37,4 +37,4 @@ const UsersProvides = ({ children }) => {
   );
 };
 
-export default UsersProvides;
+export default UsersProvider;
