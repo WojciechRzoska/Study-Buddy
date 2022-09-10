@@ -1,7 +1,7 @@
 import UserList from 'components/organisms/UserList/UserList';
 import React, { useContext } from 'react';
 import styles from 'assets/styles/ViewWrapper.module.scss';
-import { UsersContext } from 'providers/UsersProvides';
+import { UsersContext } from 'providers/UsersProvider';
 
 const Dashboard = () => {
   const { users } = useContext(UsersContext);

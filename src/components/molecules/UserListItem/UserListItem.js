@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styles from './UserListItem.module.scss';
 import DeleteButton from 'components/atoms/DeleteButton/DeleteButton';
 import Average from 'components/atoms/Average/Average';
-import { UsersContext } from 'providers/UsersProvides';
+import { UsersContext } from 'providers/UsersProvider';
 
 const UserListItem = ({ userData: { average, name, attendance = '0%' } }) => {
   const { deleteUser } = useContext(UsersContext);
