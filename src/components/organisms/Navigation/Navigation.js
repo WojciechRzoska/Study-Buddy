@@ -17,7 +17,7 @@ const Navigation = () => {
             .filter(Boolean)
             .join(' ')
         }
-        to="/"
+        to="/group"
       >
         Dashboard
       </NavLink>

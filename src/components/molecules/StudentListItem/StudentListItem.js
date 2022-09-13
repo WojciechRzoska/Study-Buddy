@@ -1,11 +1,13 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import styles from './UserListItem.module.scss';
+import styles from './StudentListItem.module.scss';
 import DeleteButton from 'components/atoms/DeleteButton/DeleteButton';
 import Average from 'components/atoms/Average/Average';
 import { UsersContext } from 'providers/UsersProvider';
 
-const UserListItem = ({ userData: { average, name, attendance = '0%' } }) => {
+const StudentListItem = ({
+  userData: { average, name, attendance = '0%' },
+}) => {
   const { deleteUser } = useContext(UsersContext);
   return (
     <li className={styles.wrapper}>
@@ -21,7 +23,7 @@ const UserListItem = ({ userData: { average, name, attendance = '0%' } }) => {
   );
 };
 
-UserListItem.propTypes = {
+StudentListItem.propTypes = {
   userData: PropTypes.shape({
     average: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
@@ -29,4 +31,4 @@ UserListItem.propTypes = {
   }),
 };
 
-export default UserListItem;
+export default StudentListItem;
