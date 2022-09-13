@@ -1,23 +1,28 @@
 import React from 'react';
 import styles from './Root.module.scss';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from 'react-router-dom';
 import MainTemplate from 'components/templates/MainTemplate/MainTemplate';
 import Dashboard from './Dashboard';
 import AddUser from './AddUser';
-import UsersProvides from 'providers/UsersProvider';
 
 const Root = () => {
   return (
     <Router>
       <MainTemplate>
-        <UsersProvides>
-          <div className={styles.wrapper}>
-            <Routes>
-              <Route path="/add-user" element={<AddUser />}></Route>
-              <Route path="/" element={<Dashboard />}></Route>
-            </Routes>
-          </div>
-        </UsersProvides>
+        <div className={styles.wrapper}>
+          <Routes>
+            <Route path="/" element={<Navigate to="/group" />} />
+            <Route path="/add-user" element={<AddUser />}></Route>
+            <Route path="/group" element={<Dashboard />}>
+              <Route path=":id" element={<Dashboard />} />
+            </Route>
+          </Routes>
+        </div>
       </MainTemplate>
     </Router>
   );
