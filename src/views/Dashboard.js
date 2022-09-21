@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import styledWrapper from 'assets/styles/ViewWrapper.module.scss';
 import styles from './Dashboard.module.scss';
@@ -7,8 +7,16 @@ import { useStudents } from 'hooks/useStudents';
 import { Title } from 'components/atoms/Title/Title';
 
 const Dashboard = () => {
-  const { groups } = useStudents();
+  const [groups, setGroups] = useState([]);
+  const { getGroups } = useStudents();
   const { id } = useParams();
+
+  useEffect(() => {
+    (async () => {
+      const groups = await getGroups(id);
+      setGroups(groups);
+    })();
+  }, [getGroups, id]);
 
   if (!id && groups.length > 0) return <Navigate to={`/group/${groups[0]}`} />;
 
