@@ -12,10 +12,12 @@ const StudentDetails = ({ student }) => {
         <h3 className={styles.label}>Course:</h3>
         <p>Business</p>
         <h3 className={styles.label}>Average grades:</h3>
-        <div className={styles.subjectInfo}>
-          <p>abc</p>
-          <Average average={student.average}></Average>
-        </div>
+        {student.grades.map(({ subject, average }) => (
+          <div className={styles.subjectInfo} key={subject}>
+            <p>{subject}</p>
+            <Average average={average}>{average}</Average>
+          </div>
+        ))}
       </div>
     </div>
   );

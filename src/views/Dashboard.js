@@ -12,7 +12,7 @@ import Modal from 'components/organisms/Modal/Modal';
 const Dashboard = () => {
   const [groups, setGroups] = useState([]);
   const { getGroups, getStudentById } = useStudents();
-  const [currentStudent, setCurrentStudent] = useState([]);
+  const [currentStudent, setCurrentStudent] = useState(null);
   const { id } = useParams();
   const { isOpen, handleOpenModal, handleCloseModal } = useModal();
 
@@ -36,9 +36,9 @@ const Dashboard = () => {
       <div className={styles.titleWrapper}>
         <Title>Group {id}</Title>
         <nav>
-          {groups.map((group) => (
-            <Link key={group} to={`/group/${group}`}>
-              {group}{' '}
+          {groups.map(({ id }) => (
+            <Link key={id} to={`/group/${id}`}>
+              {id}{' '}
             </Link>
           ))}
         </nav>
