@@ -19,3 +19,10 @@
 .buttonSuccess {
   background-color: variables.$success;
 }
+.bigAverage {
+  width: 68px;
+  height: 68px;
+  position: absolute;
+  left: 40px;
+  font-size: variables.$font-extraLarge;
+}
