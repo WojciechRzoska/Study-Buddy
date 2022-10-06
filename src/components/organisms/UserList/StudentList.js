@@ -5,7 +5,7 @@ import { Title } from 'components/atoms/Title/Title';
 import StudentListItem from 'components/molecules/StudentListItem/StudentListItem.js';
 import { useStudents } from 'hooks/useStudents';
 
-const StudentList = () => {
+const StudentList = ({ handleOpenStudentDetails }) => {
   const [students, setStudents] = useState([]);
   const { id } = useParams();
   const { getStudents } = useStudents();
@@ -22,7 +22,11 @@ const StudentList = () => {
       <Title>Students List</Title>
       <ul className={styles.userList}>
         {students.map((userData) => (
-          <StudentListItem key={userData.name} userData={userData} />
+          <StudentListItem
+            onClick={() => handleOpenStudentDetails(userData.id)}
+            key={userData.name}
+            userData={userData}
+          />
         ))}
       </ul>
     </>

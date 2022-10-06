@@ -7,10 +7,11 @@ import { UsersContext } from 'providers/UsersProvider';
 
 const StudentListItem = ({
   userData: { average, name, attendance = '0%' },
+  ...props
 }) => {
   const { deleteUser } = useContext(UsersContext);
   return (
-    <li className={styles.wrapper}>
+    <li className={styles.wrapper} {...props}>
       <div>
         <Average average={average} />
       </div>
