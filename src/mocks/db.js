@@ -4,7 +4,6 @@ import { faker } from '@faker-js/faker';
 faker.seed(123);
 
 const groups = ['A', 'B', 'C'];
-const getRandomGroup = (index) => groups[index];
 const eventTypes = ['workshop', 'exam', 'lecture'];
 const getRandomValue = (array, index) => array[index];
 const getRandomAverage = () =>
@@ -16,8 +15,9 @@ export const db = factory({
     name: () => faker.fake('{{name.firstName}} {{name.lastName}}'),
     attendance: () => `${faker.datatype.number({ min: 0, max: 100 })}`,
     average: getRandomAverage,
-    group: () => getRandomGroup(faker.datatype.number({ min: 0, max: 2 })),
-    course: () => faker.fake('{{random.word}} {{random.word}}'),
+    group: () =>
+      getRandomValue(groups, faker.datatype.number({ min: 0, max: 2 })),
+    course: () => faker.fake('{{company.bsAdjective}} {{company.bsNoun}}'),
     grades: () => [
       {
         subject: 'Business Philosophy',
