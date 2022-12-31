@@ -12,12 +12,13 @@ const getRandomAverage = () =>
 export const db = factory({
   student: {
     id: primaryKey(faker.datatype.uuid),
-    name: () => faker.fake('{{name.firstName}} {{name.lastName}}'),
+    name: () => faker.helpers.fake('{{name.firstName}} {{name.lastName}}'),
     attendance: () => `${faker.datatype.number({ min: 0, max: 100 })}`,
     average: getRandomAverage,
     group: () =>
       getRandomValue(groups, faker.datatype.number({ min: 0, max: 2 })),
-    course: () => faker.fake('{{company.bsAdjective}} {{company.bsNoun}}'),
+    course: () =>
+      faker.helpers.fake('{{company.bsAdjective}} {{company.bsNoun}}'),
     grades: () => [
       {
         subject: 'Business Philosophy',
@@ -42,7 +43,14 @@ export const db = factory({
       getRandomValue(eventTypes, faker.datatype.number({ min: 0, max: 2 })),
     group: () =>
       getRandomValue(groups, faker.datatype.number({ min: 0, max: 2 })),
-    subject: () => faker.fake('{{company.bsAdjective}} {{company.bsNoun}}'),
+    subject: () =>
+      faker.helpers.fake('{{company.bsAdjective}} {{company.bsNoun}}'),
     date: faker.date.soon,
+  },
+  teacher: {
+    id: primaryKey(() => '1'),
+    name: () => 'Jacek Sobczak',
+    login: () => 'teacher@gmail.com',
+    password: () => '1234',
   },
 });

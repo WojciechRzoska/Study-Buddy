@@ -21,15 +21,8 @@ const Navigation = () => {
       >
         Dashboard
       </NavLink>
-      <NavLink
-        className={({ isActive }) =>
-          [[styles.links], isActive ? [styles.active] : null]
-            .filter(Boolean)
-            .join(' ')
-        }
-        to="add-user"
-      >
-        Add user
+      <NavLink to="/group" onClick={() => localStorage.removeItem('token')}>
+        Login
       </NavLink>
     </div>
   );
