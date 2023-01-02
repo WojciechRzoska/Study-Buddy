@@ -1,8 +1,10 @@
 import React from 'react';
 import styles from './Navigation.module.scss';
 import { NavLink } from 'react-router-dom';
+import { useAuth } from 'hooks/useAuth';
 
 const Navigation = () => {
+  const auth = useAuth();
   return (
     <div className={styles.wrapper}>
       <div className={styles.logo}>
@@ -21,7 +23,7 @@ const Navigation = () => {
       >
         Dashboard
       </NavLink>
-      <NavLink to="/group" onClick={() => localStorage.removeItem('token')}>
+      <NavLink to="/group" onClick={auth.signOut}>
         Login
       </NavLink>
     </div>
