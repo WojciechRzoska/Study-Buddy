@@ -1,0 +1,14 @@
+@use 'assets/styles/variables';
+
+.noteWrapper {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+  position: relative;
+
+  h3,
+  p {
+    margin: 0;
+    color: variables.$darkGrey;
+  }
+}

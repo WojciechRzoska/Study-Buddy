@@ -23,8 +23,18 @@ const Navigation = () => {
       >
         Dashboard
       </NavLink>
-      <NavLink to="/group" onClick={auth.signOut}>
-        Login
+      <NavLink
+        className={({ isActive }) =>
+          [[styles.links], isActive ? [styles.active] : null]
+            .filter(Boolean)
+            .join(' ')
+        }
+        to="/notes"
+      >
+        Notes
+      </NavLink>
+      <NavLink to="/group" className={styles.links} onClick={auth.signOut}>
+        Logout
       </NavLink>
     </div>
   );

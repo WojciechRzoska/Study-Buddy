@@ -4,23 +4,38 @@ import styles from './FormField.module.scss';
 import Input from 'components/atoms/Input/Input';
 
 const FormField = React.forwardRef(
-  ({ onChange, value, label, name, id, type = 'text', ...props }, ref) => {
+  (
+    { onChange, value, label, name, id, type = 'text', isTextarea, ...props },
+    ref
+  ) => {
     return (
       <div className={styles.wrapper}>
         <label className={styles.label} htmlFor={id}>
           {label}
         </label>
-        <Input
-          className={styles.input}
-          name={name}
-          id={id}
-          type={type}
-          value={value}
-          onChange={onChange}
-          data-testid={label}
-          {...props}
-          ref={ref}
-        />
+        {isTextarea ? (
+          <Input
+            isTextarea
+            name={name}
+            id={id}
+            value={value}
+            onChange={onChange}
+            data-testid={label}
+            {...props}
+            ref={ref}
+          />
+        ) : (
+          <Input
+            name={name}
+            id={id}
+            type={type}
+            value={value}
+            onChange={onChange}
+            data-testid={label}
+            {...props}
+            ref={ref}
+          />
+        )}
       </div>
     );
   }
