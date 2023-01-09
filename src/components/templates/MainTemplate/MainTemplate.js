@@ -1,4 +1,5 @@
 import Navigation from 'components/organisms/Navigation/Navigation';
+import NotesWidget from 'components/organisms/NotesWidget/NotesWidget';
 import SearchBar from 'components/organisms/SearchBar/SearchBar';
 import React from 'react';
 import NewsSection from '../NewsSection/NewsSection';
@@ -11,6 +12,7 @@ const MainTemplate = ({ children }) => {
       <SearchBar />
       {children}
       <NewsSection />
+      <NotesWidget />
     </div>
   );
 };
