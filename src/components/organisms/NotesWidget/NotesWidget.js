@@ -1,9 +1,11 @@
 import Note from 'components/molecules/Note/Note';
 import React, { useState } from 'react';
 import styles from './NotesWidget.module.scss';
+import { useSelector } from 'react-redux';
 
 const NotesWidget = () => {
   const [isOpen, setIsOpen] = useState('false');
+  const notes = useSelector((state) => state.notes);
 
   const handleToggleWidget = () => setIsOpen((prevState) => !prevState);
   return (
@@ -18,9 +20,13 @@ const NotesWidget = () => {
         notes
       </button>
       <div className={styles.notesWrapper}>
-        <Note />
-        <Note />
-        <Note />
+        {notes.length ? (
+          notes.map(({ id, title, content }) => (
+            <Note id={id} key={id} title={title} content={content} />
+          ))
+        ) : (
+          <p>Create your first note</p>
+        )}
       </div>
     </div>
   );
