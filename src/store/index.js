@@ -1,51 +1,42 @@
-import { v4 as uuid } from 'uuid';
-import { createStore } from 'redux';
+import { configureStore } from '@reduxjs/toolkit';
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-export const addNote = (payload) => {
-  return {
-    type: 'notes/add',
-    payload: {
-      id: uuid(),
-      ...payload,
-    },
-  };
-};
+const notesApi = createApi({
+  baseQuery: fetchBaseQuery({
+    baseUrl: '/',
+  }),
+  tagTypes: ['Notes'],
+  endpoints: (builder) => ({
+    getNotes: builder.query({
+      query: () => 'notes',
+      providesTags: ['Notes'],
+    }),
+    addNote: builder.mutation({
+      query: (body) => ({
+        url: 'notes',
+        method: 'POST',
+        body,
+      }),
+      invalidatesTags: ['Notes'],
+    }),
+    removeNote: builder.mutation({
+      query: (body) => ({
+        url: 'notes',
+        method: 'DELETE',
+        body,
+      }),
+      invalidatesTags: ['Notes'],
+    }),
+  }),
+});
 
-export const removeNote = (payload) => {
-  return {
-    type: 'notes/remove',
-    payload,
-  };
-};
+export const { useGetNotesQuery, useAddNoteMutation, useRemoveNoteMutation } =
+  notesApi;
 
-const initialState = {
-  notes: [
-    {
-      id: uuid(),
-      title: 'Lorem ipsum',
-      content: 'Lorem ipsum dolor sit amet',
-    },
-  ],
-};
-
-const notesReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case 'notes/add':
-      return {
-        ...state,
-        notes: [...state.notes, action.payload],
-      };
-    case 'notes/remove':
-      return {
-        ...state,
-        notes: state.notes.filter((note) => note.id !== action.payload.id),
-      };
-    default:
-      return state;
-  }
-};
-
-export const store = createStore(
-  notesReducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
+export const store = configureStore({
+  reducer: {
+    [notesApi.reducerPath]: notesApi.reducer,
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(notesApi.middleware),
+});
