@@ -30,6 +30,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "test:e2e": "cypress open --project ./cypress/e2e",
     "eject": "react-scripts eject"
   },
   "browserslist": {
@@ -45,9 +46,12 @@
     ]
   },
   "devDependencies": {
+    "@cypress/webpack-dev-server": "^3.2.2",
     "@faker-js/faker": "^7.5.0",
+    "@testing-library/cypress": "^9.0.0",
     "axios-mock-adapter": "^1.21.2",
     "babel-eslint": "^10.1.0",
+    "cypress": "^12.3.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
     "msw": "^0.47.1",
