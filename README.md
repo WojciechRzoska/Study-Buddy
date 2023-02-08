@@ -1,3 +1,6 @@
+LIVE: https://roaring-raindrop-040baa.netlify.app/   
+Login: teacher@gmail.com password:1234
+
 //PL<br />
 Jest to projekt do nauki wszelkich zagadnień związanych z reactem. Przedstawia on tutaj panel dla nauczyciela, który może przeglądać grupy swoich uczniów, którzy zainicjowani są w bazie msw. Na dodatek może on dodawać swoje notatki, które są widoczne z każdego miejsca w aplikacji przy użyciu reduxa. Projekt nie miał jakiegoś większego celu prócz nauki i wdrażania poszczególnych zagadnień. Mam nadzieję, że je przyswoiłem i w następnych projektach będę ich śmiało używać.<br />
 Używałem tutaj takich rzeczy jak:<br />
